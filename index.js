@@ -20,10 +20,10 @@ const mainQuestions = () => {
             name: 'option',
             message: 'what do you want to do?',
             choices: [
-                { value: 'view_departments', name: "view all deparments" },
+                { value: 'view_departments', name: "view all departments" },
                 { value: 'view_employees', name: "view all employees" },
                 { value: 'view_roles', name: "view all roles" },
-                { value: 'add_department', name: "add a deparments" },
+                { value: 'add_department', name: "add a departments" },
                 { value: 'add_role', name: "add a role" },
                 { value: 'add_employee', name: "add an employee" },
                 { value: 'update_role', name: "update an employee role" },
@@ -31,7 +31,7 @@ const mainQuestions = () => {
         },
     ])
 
-    const deparmentQuestions = [
+    const departmentQuestions = [
         {
             type: 'input',
             name: 'department_name',
@@ -156,7 +156,7 @@ const view_roles = () => {
 
 const add_department = () => {
     inquirer
-    .createPromptModule(deparmentQuestions)
+    .createPromptModule(departmentQuestions)
     .then((response) => {
         data.addDepartment(response).then((results) => {
             console.log('\n', results, '\n');
@@ -168,7 +168,7 @@ const add_department = () => {
 const add_role = () => {
     data.getdepartments = roleQuestions[2];
     results.forEach((department) => {
-        deparmentQuestions.choices.push({
+        departmentQuestions.choices.push({
             value:department.id,
             name: department.name
         });
@@ -196,7 +196,7 @@ const add_employee = () => {
             });
         });
 
-        db.getemployees().then((results) => {
+        data.getemployees().then((results) => {
              const managerQuestion = employeeQuestions[3];
              results.forEach((employee) => {
                 managerQuestion.choices.push({
